@@ -1,24 +1,51 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { EPriority, IBaseTodo, ITodo } from './interace';
+import { Table } from './components/Table'
+
+const defaultTodos: Array<ITodo> = [];
+const initCurrentTodo: ITodo = { details: "", name: "", priority: EPriority.LOW, id: null };
 
 function App() {
+  const [todos, setTodos] = useState(defaultTodos);
+  const [editTodo, setEditTodo] = useState(initCurrentTodo);
+  const [editing, setEdit] = useState(false);
+
+  const onAddTodo = (newTodo: IBaseTodo) => {
+    const id = todos.length + 1;
+    setTodos([...todos, { ...newTodo, id }]);
+  };
+  const onCurrentTodo = (todo: ITodo) => {
+    setEditTodo(todo);
+    setEdit(true);
+  };
+  const onUpdateTodo = (id: number, updatedTodo: ITodo) => {
+    setEdit(false);
+    setTodos(todos.map(i => (i.id === id ? updatedTodo : i)));
+  };
+  const onDeleteTodo = (todo: ITodo) => {
+    setTodos(todos.filter(i => i.id !== todo.id));
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>CRUD App with Hooks</h1>
+
+      <div className="user-flex-wrapper">
+        {editing ? (
+          <EditTodoForm
+            todo={editTodo}
+            onUpdateTodo={onUpdateTodo}
+            setEdit={setEdit}
+          />
+        ) : (
+          <AddTodoForm onAddTodo={onAddTodo} />
+        )}
+        <Table
+          todos={todos}
+          onEdit={onCurrentTodo}
+          onDelete={onDeleteTodo}
+        />
+      </div>
     </div>
   );
 }
