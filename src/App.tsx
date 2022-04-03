@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { EPriority, IBaseTodo, ITodo } from './interace';
-import { Table } from './components/Table'
+import Table from './components/Table'
+import EditTodoForm from './components/EditTodoForm';
+import AddTodoForm from './components/AddTodoForm';
 
 const defaultTodos: Array<ITodo> = [];
 const initCurrentTodo: ITodo = { details: "", name: "", priority: EPriority.LOW, id: null };
@@ -18,7 +20,7 @@ function App() {
     setEditTodo(todo);
     setEdit(true);
   };
-  const onUpdateTodo = (id: number, updatedTodo: ITodo) => {
+  const onUpdateTodo = (id: number | null, updatedTodo: ITodo) => {
     setEdit(false);
     setTodos(todos.map(i => (i.id === id ? updatedTodo : i)));
   };

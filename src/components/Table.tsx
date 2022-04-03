@@ -2,13 +2,13 @@ import React from "react";
 import { ITodo } from "../interace";
 
 // Props, Angular equivalent of @Import
-interface IProps {
+interface Props {
   todos: Array<ITodo>;
   onEdit: (user: ITodo) => void;
   onDelete: (user: ITodo) => void;
 }
 
-const Table: React.FunctionComponent<IProps> = props => {
+const Table: React.FunctionComponent<Props> = props => {
   return (
     <div className="user-table">
       <h1>View users</h1>
