@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { ITodo, EPriority } from '../interace';
+import { ITodo, EPriority } from '../interface';
 
 
 interface Props {

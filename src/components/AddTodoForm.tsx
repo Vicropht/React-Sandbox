@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { EPriority, IBaseTodo } from '../interace';
+import { EPriority, IBaseTodo } from '../interface';
 
 type Props = {
   onAddTodo: (todo: IBaseTodo) => void;
@@ -13,12 +13,16 @@ const AddTodoForm = (props: Props) => {
 
   const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    console.log(formValue)
+
     props.onAddTodo(formValue);
     setFormValue(initTodo);
-    return
   };
-  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+  const onInputChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
+    console.log(e.target.value)
     setFormValue({ ...formValue, [name]: value });
   };
 
@@ -49,8 +53,8 @@ const AddTodoForm = (props: Props) => {
         </div>
         <div className="form-row">
           <label>Priority</label>
-          <select name="priority">
-            <option selected value={priorityEnum.LOW}>Low Priority</option>
+          <select defaultValue={priorityEnum.LOW} onChange={onInputChange} name="priority">
+            <option value={priorityEnum.LOW}>Low Priority</option>
             <option value={priorityEnum.MEDIUM}>Medium Priority</option>
             <option value={priorityEnum.HIGH}>High Priority</option>
           </select>

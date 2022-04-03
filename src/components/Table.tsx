@@ -1,17 +1,31 @@
 import React from "react";
-import { ITodo } from "../interace";
+import { EPriority, ITodo } from "../interface";
 
 // Props, Angular equivalent of @Import
 interface Props {
   todos: Array<ITodo>;
-  onEdit: (user: ITodo) => void;
-  onDelete: (user: ITodo) => void;
+  onEdit: (todo: ITodo) => void;
+  onDelete: (todo: ITodo) => void;
 }
 
 const Table: React.FunctionComponent<Props> = props => {
+  const translatePriority = (priority: EPriority) => {
+    console.log(priority)
+    switch (priority) {
+      case EPriority.LOW:
+        return 'Low Priority';
+
+      case EPriority.MEDIUM:
+        return 'Medium Priority';
+
+      case EPriority.HIGH:
+        return 'High Priority';
+    }
+  }
+
   return (
-    <div className="user-table">
-      <h1>View users</h1>
+    <div className="todo-table">
+      <h1>View todos</h1>
       <table>
         <thead>
           <tr>
@@ -27,7 +41,7 @@ const Table: React.FunctionComponent<Props> = props => {
               <tr key={i.id}>
                 <td>{i["name"]}</td>
                 <td>{i["details"]}</td>
-                <td>{i["priority"]}</td>
+                <td>{translatePriority(i["priority"])}</td>
                 <td>
                   <button onClick={() => props.onEdit(i)}>edit</button>
                   <button onClick={() => props.onDelete(i)}>delete</button>
@@ -36,7 +50,7 @@ const Table: React.FunctionComponent<Props> = props => {
             ))
           ) : (
             <tr>
-              <td colSpan={3}>Your Todo List is empty! Start by creating a new Todo (+)</td>
+              <td colSpan={3}>Your Todo List is empty! Start by creating a new Todo above</td>
             </tr>
           )}
         </tbody>

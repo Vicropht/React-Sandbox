@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { EPriority, IBaseTodo, ITodo } from './interace';
+import { EPriority, IBaseTodo, ITodo } from './interface';
 import Table from './components/Table'
 import EditTodoForm from './components/EditTodoForm';
 import AddTodoForm from './components/AddTodoForm';
@@ -30,9 +30,9 @@ function App() {
 
   return (
     <div className="App">
-      <h1>CRUD App with Hooks</h1>
+      <h1>Tooodooo</h1>
 
-      <div className="user-flex-wrapper">
+      <div className="todo-flex-wrapper">
         {editing ? (
           <EditTodoForm
             todo={editTodo}
