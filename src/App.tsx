@@ -1,30 +1,30 @@
 import React, { useState } from 'react';
-import { EPriority, IBaseTodo, ITodo } from './interface';
+import { BaseTodo, Todo, priorities } from './interface';
 import Table from './components/Table'
 import EditTodoForm from './components/EditTodoForm';
 import AddTodoForm from './components/AddTodoForm';
 
-const defaultTodos: Array<ITodo> = [];
-const initCurrentTodo: ITodo = { details: "", name: "", priority: EPriority.LOW, id: null };
+const defaultTodos: Array<Todo> = [];
+const initCurrentTodo: Todo = { details: "", name: "", priority: priorities[0], id: null };
 
 function App() {
   const [todos, setTodos] = useState(defaultTodos);
   const [editTodo, setEditTodo] = useState(initCurrentTodo);
   const [editing, setEdit] = useState(false);
 
-  const onAddTodo = (newTodo: IBaseTodo) => {
+  const onAddTodo = (newTodo: BaseTodo) => {
     const id = todos.length + 1;
     setTodos([...todos, { ...newTodo, id }]);
   };
-  const onCurrentTodo = (todo: ITodo) => {
+  const onCurrentTodo = (todo: Todo) => {
     setEditTodo(todo);
     setEdit(true);
   };
-  const onUpdateTodo = (id: number | null, updatedTodo: ITodo) => {
+  const onUpdateTodo = (id: number | null, updatedTodo: Todo) => {
     setEdit(false);
     setTodos(todos.map(i => (i.id === id ? updatedTodo : i)));
   };
-  const onDeleteTodo = (todo: ITodo) => {
+  const onDeleteTodo = (todo: Todo) => {
     setTodos(todos.filter(i => i.id !== todo.id));
   };
 

@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { ITodo, EPriority } from '../interface';
+import { Todo, priorityLabels } from '../interface';
 
 
 interface Props {
-  todo: ITodo;
+  todo: Todo;
   // We can still accept null for the id, since the id for the todo will be assigned in the App
-  onUpdateTodo: (id: number | null, too: ITodo) => void;
-  setEdit: (bool: boolean) => void;
+  onUpdateTodo(id: Todo['id'], too: Todo): void;
+  setEdit(bool: boolean): void;
 }
 
 const EditTodoForm = (props: Props) => {
-  const priorityEnum = EPriority;
-
   const [todo, setTodo] = useState(props.todo);
 
   // By using this Hook, you tell React that your component needs to do something after render.
@@ -67,9 +65,9 @@ const EditTodoForm = (props: Props) => {
         <div className="form-row">
           <label>Priority</label>
           <select name="priority">
-            <option selected value={priorityEnum.LOW}>Low Priority</option>
-            <option value={priorityEnum.MEDIUM}>Medium Priority</option>
-            <option value={priorityEnum.HIGH}>High Priority</option>
+            {Object.entries(priorityLabels).map(([prio, label], idx) =>
+              <option selected={idx === 0} value={prio}>{label}</option>
+            )}
           </select>
         </div>
 

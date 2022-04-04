@@ -1,14 +1,13 @@
-import React, { useState } from 'react'
-import { EPriority, IBaseTodo } from '../interface';
+import React, { ReactElement, useState } from 'react'
+import { BaseTodo, priorities, priorityLabels } from '../interface';
 
 type Props = {
-  onAddTodo: (todo: IBaseTodo) => void;
+  onAddTodo: (todo: BaseTodo) => void;
 }
 
-const initTodo: IBaseTodo = { name: "", details: "", priority: EPriority.LOW };
+const initTodo: BaseTodo = { name: "", details: "", priority: priorities[0] };
 
-const AddTodoForm = (props: Props) => {
-  const priorityEnum = EPriority;
+function AddTodoForm(props: Props): ReactElement {
   const [formValue, setFormValue] = useState(initTodo);
 
   const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -53,10 +52,10 @@ const AddTodoForm = (props: Props) => {
         </div>
         <div className="form-row">
           <label>Priority</label>
-          <select defaultValue={priorityEnum.LOW} onChange={onInputChange} name="priority">
-            <option value={priorityEnum.LOW}>Low Priority</option>
-            <option value={priorityEnum.MEDIUM}>Medium Priority</option>
-            <option value={priorityEnum.HIGH}>High Priority</option>
+          <select defaultValue={priorities[0]} onChange={onInputChange} name="priority">
+            {Object.entries(priorityLabels).map(([prio, label], idx) =>
+              <option selected={idx === 0} value={prio}>{label}</option>
+            )}
           </select>
         </div>
         <div className="form-row">
