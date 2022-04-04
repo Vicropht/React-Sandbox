@@ -1,15 +1,18 @@
-export enum EPriority {
-  LOW = 'priority.low',
-  MEDIUM = 'priority.medium',
-  HIGH = 'priority.medium'
+export type Priority = typeof priorities[number];
+
+export const priorities = ['LOW', 'MEDIUM', 'HIGH'] as const;
+export const priorityLabels: Record<Priority, string> = {
+  LOW: 'Low Priority',
+  MEDIUM: 'Medium Priority',
+  HIGH: 'High Priority'
 }
 
-export interface IBaseTodo {
+export interface BaseTodo {
   name: string;
-  priority: EPriority;
+  priority: Priority;
   details: string;
 }
 
-export interface ITodo extends IBaseTodo {
+export interface Todo extends BaseTodo {
   id: number | null;
 }
