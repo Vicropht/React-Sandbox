@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import { Priority, priorityLabels, Todo } from "../interface";
+import { priorityLabels, Todo } from "../interface";
 
 // Props, Angular equivalent of @Import
 interface Props {

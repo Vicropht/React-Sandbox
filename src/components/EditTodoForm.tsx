@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { ReactElement, useEffect, useState } from 'react'
 import { Todo, priorityLabels } from '../interface';
 
 
@@ -9,7 +9,7 @@ interface Props {
   setEdit(bool: boolean): void;
 }
 
-const EditTodoForm = (props: Props) => {
+function EditTodoForm(props: Props): ReactElement {
   const [todo, setTodo] = useState(props.todo);
 
   // By using this Hook, you tell React that your component needs to do something after render.
