@@ -53,8 +53,8 @@ function AddTodoForm(props: Props): ReactElement {
         <div className="form-row">
           <label>Priority</label>
           <select defaultValue={priorities[0]} onChange={onInputChange} name="priority">
-            {Object.entries(priorityLabels).map(([prio, label], idx) =>
-              <option selected={idx === 0} value={prio}>{label}</option>
+            {Object.entries(priorityLabels).map(([prio, label]) =>
+              <option value={prio}>{label}</option>
             )}
           </select>
         </div>

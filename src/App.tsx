@@ -13,6 +13,8 @@ function App() {
   const [editing, setEdit] = useState(false);
 
   const onAddTodo = (newTodo: BaseTodo) => {
+    // FIXME: breaks if you delete stuff. should prob use nanoid or something like that
+    // https://www.npmjs.com/package/nanoid
     const id = todos.length + 1;
     setTodos([...todos, { ...newTodo, id }]);
   };
@@ -20,7 +22,7 @@ function App() {
     setEditTodo(todo);
     setEdit(true);
   };
-  const onUpdateTodo = (id: number | null, updatedTodo: Todo) => {
+  const onUpdateTodo = (id: Todo['id'], updatedTodo: Todo) => {
     setEdit(false);
     setTodos(todos.map(i => (i.id === id ? updatedTodo : i)));
   };

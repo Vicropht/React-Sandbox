@@ -22,6 +22,8 @@ function EditTodoForm(props: Props): ReactElement {
 
     if (!todo.name || !todo.priority) {
       // TODO: Add form error handling
+      // you can use tiny-invariant here to validate stuff on runtime
+      // https://www.npmjs.com/package/tiny-invariant
       return;
     }
 
@@ -65,8 +67,8 @@ function EditTodoForm(props: Props): ReactElement {
         <div className="form-row">
           <label>Priority</label>
           <select name="priority">
-            {Object.entries(priorityLabels).map(([prio, label], idx) =>
-              <option selected={idx === 0} value={prio}>{label}</option>
+            {Object.entries(priorityLabels).map(([prio, label]) =>
+              <option value={prio}>{label}</option>
             )}
           </select>
         </div>
