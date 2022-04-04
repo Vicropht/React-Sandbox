@@ -4,7 +4,6 @@ import { Todo, priorityLabels } from '../interface';
 
 interface Props {
   todo: Todo;
-  // We can still accept null for the id, since the id for the todo will be assigned in the App
   onUpdateTodo(id: Todo['id'], too: Todo): void;
   setEdit(bool: boolean): void;
 }
@@ -12,8 +11,7 @@ interface Props {
 function EditTodoForm(props: Props): ReactElement {
   const [todo, setTodo] = useState(props.todo);
 
-  // By using this Hook, you tell React that your component needs to do something after render.
-  // React will remember this effect for later use, equivalent of ngOnInit for Angular
+  // The Effect Hook lets you perform side effects in function components
   useEffect(() => setTodo(props.todo), [props]);
 
   // Prevent creating a todo without a name or priority

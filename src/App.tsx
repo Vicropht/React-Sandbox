@@ -3,9 +3,10 @@ import { BaseTodo, Todo, priorities } from './interface';
 import Table from './components/Table'
 import EditTodoForm from './components/EditTodoForm';
 import AddTodoForm from './components/AddTodoForm';
+import { nanoid } from 'nanoid';
 
 const defaultTodos: Array<Todo> = [];
-const initCurrentTodo: Todo = { details: "", name: "", priority: priorities[0], id: null };
+const initCurrentTodo: Todo = { details: "", name: "", priority: priorities[0], id: '' };
 
 function App() {
   const [todos, setTodos] = useState(defaultTodos);
@@ -13,9 +14,7 @@ function App() {
   const [editing, setEdit] = useState(false);
 
   const onAddTodo = (newTodo: BaseTodo) => {
-    // FIXME: breaks if you delete stuff. should prob use nanoid or something like that
-    // https://www.npmjs.com/package/nanoid
-    const id = todos.length + 1;
+    const id = nanoid();
     setTodos([...todos, { ...newTodo, id }]);
   };
   const onCurrentTodo = (todo: Todo) => {
@@ -33,8 +32,7 @@ function App() {
   return (
     <div className="App">
       <h1>Tooodooo</h1>
-
-      <div className="todo-flex-wrapper">
+      <div className="body-wrapper">
         {editing ? (
           <EditTodoForm
             todo={editTodo}
@@ -42,7 +40,9 @@ function App() {
             setEdit={setEdit}
           />
         ) : (
-          <AddTodoForm onAddTodo={onAddTodo} />
+          <div className='add-form'>
+            <AddTodoForm onAddTodo={onAddTodo} />
+          </div>
         )}
         <Table
           todos={todos}

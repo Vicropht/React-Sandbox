@@ -14,5 +14,5 @@ export interface BaseTodo {
 }
 
 export interface Todo extends BaseTodo {
-  id: number | null;
+  id: string;
 }
