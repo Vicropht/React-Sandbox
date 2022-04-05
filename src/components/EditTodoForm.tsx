@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useState } from 'react'
 import { Todo, priorityLabels } from '../interface';
 
 
-interface Props {
+type Props = {
   todo: Todo;
   onUpdateTodo(id: Todo['id'], too: Todo): void;
   setEdit(bool: boolean): void;
@@ -11,7 +11,6 @@ interface Props {
 function EditTodoForm(props: Props): ReactElement {
   const [todo, setTodo] = useState(props.todo);
 
-  // The Effect Hook lets you perform side effects in function components
   useEffect(() => setTodo(props.todo), [props]);
 
   // Prevent creating a todo without a name or priority
@@ -48,7 +47,6 @@ function EditTodoForm(props: Props): ReactElement {
             onChange={onInputChange}
             required
           />
-          <div className="form-error">Empty entries are not accepted!</div>
         </div>
 
         <div className="form-row">

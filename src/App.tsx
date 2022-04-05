@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import { BaseTodo, Todo, priorities } from './interface';
-import Table from './components/Table'
-import EditTodoForm from './components/EditTodoForm';
-import AddTodoForm from './components/AddTodoForm';
 import { nanoid } from 'nanoid';
+import { useState } from 'react';
+import Accordion from './components/Accordion';
+import AddTodoForm from './components/AddTodoForm';
+import EditTodoForm from './components/EditTodoForm';
+import Table from './components/Table';
+import { BaseTodo, priorities, Todo } from './interface';
 
 const defaultTodos: Array<Todo> = [];
 const initCurrentTodo: Todo = { details: "", name: "", priority: priorities[0], id: '' };
@@ -49,6 +50,7 @@ function App() {
           onEdit={onCurrentTodo}
           onDelete={onDeleteTodo}
         />
+        <Accordion />
       </div>
     </div>
   );
