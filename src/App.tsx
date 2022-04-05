@@ -32,24 +32,26 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Tooodooo</h1>
+      <h1 className='title'>Vicrophts Bizarre React Sandbox</h1>
       <div className="body-wrapper">
-        {editing ? (
-          <EditTodoForm
-            todo={editTodo}
-            onUpdateTodo={onUpdateTodo}
-            setEdit={setEdit}
+        <div className='todo-section'>
+          {editing ? (
+            <EditTodoForm
+              todo={editTodo}
+              onUpdateTodo={onUpdateTodo}
+              setEdit={setEdit}
+            />
+          ) : (
+            <div className='add-form'>
+              <AddTodoForm onAddTodo={onAddTodo} />
+            </div>
+          )}
+          <Table
+            todos={todos}
+            onEdit={onCurrentTodo}
+            onDelete={onDeleteTodo}
           />
-        ) : (
-          <div className='add-form'>
-            <AddTodoForm onAddTodo={onAddTodo} />
-          </div>
-        )}
-        <Table
-          todos={todos}
-          onEdit={onCurrentTodo}
-          onDelete={onDeleteTodo}
-        />
+        </div>
         <Accordion />
       </div>
     </div>

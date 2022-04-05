@@ -25,7 +25,7 @@ function Accordion(): ReactElement {
   }, [refresh]);
 
   return (
-    <div>
+    <div id='accordion'>
       <h2>The Trivia Accordion (True or False)</h2>
       {
         loading ? (
@@ -38,7 +38,7 @@ function Accordion(): ReactElement {
                   <summary>
                     <b>{`${he.decode(question.question)}`}</b>
                   </summary>
-                  <span>{`${he.decode(question.correct_answer)}`}</span>
+                  <span className='answer'>{`${he.decode(question.correct_answer)}`}</span>
                 </details>
               ))
             }

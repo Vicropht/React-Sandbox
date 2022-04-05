@@ -32,12 +32,14 @@ function Table(props: Props): ReactElement {
       <h1>View todos</h1>
 
       <label>Search</label>
-      <input
-        id="search-input"
-        type="text"
-        placeholder="Search for a todo"
-        onChange={onSearch}
-      />
+      <div>
+        <input
+          id="search-input"
+          type="text"
+          placeholder="Search for a todo"
+          onChange={onSearch}
+        />
+      </div>
 
       <table>
         <thead>
@@ -56,8 +58,8 @@ function Table(props: Props): ReactElement {
                 <td>{i.details}</td>
                 <td>{priorityLabels[i.priority]}</td>
                 <td>
-                  <button onClick={() => props.onEdit(i)}>edit</button>
-                  <button onClick={() => props.onDelete(i)}>delete</button>
+                  <button onClick={() => props.onEdit(i)}>Edit</button>
+                  <button onClick={() => props.onDelete(i)}>Done ✔</button>
                 </td>
                 <td>{hasActiveSearch}</td>
               </tr>
