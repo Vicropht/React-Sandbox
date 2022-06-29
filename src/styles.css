@@ -29,3 +29,12 @@ details[open] summary {
   margin: -0.5em -0.5em 0;
   padding: 0.5em;
 }
+
+hr {
+  margin: 40px 0;
+  border: 0;
+  border-top: 1px dashed rgb(75, 133, 0);
+  border-bottom: 2px solid rgb(156, 39, 224);
+  height: 3px;
+  width: 50%;
+}

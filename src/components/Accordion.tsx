@@ -26,7 +26,9 @@ function Accordion(): ReactElement {
 
   return (
     <div id='accordion'>
-      <h2>The Trivia Accordion (True or False)</h2>
+      <hr />
+
+      <h2><i>Trivia Accordion (Click for answer, true or false only)</i></h2>
       {
         loading ? (
           <p>Loading content...</p>

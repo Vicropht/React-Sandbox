@@ -28,7 +28,7 @@ function AddTodoForm(props: Props): ReactElement {
       <h1>Add todo</h1>
       <form id='add-form' onSubmit={onFormSubmit}>
         <div className="form-row">
-          <label>Name</label>
+          <label>Name </label>
           <input
             type="text"
             placeholder="What needs to be done?"
@@ -40,7 +40,7 @@ function AddTodoForm(props: Props): ReactElement {
           />
         </div>
         <div className="form-row">
-          <label>Details</label>
+          <label>Details </label>
           <input
             type="text"
             placeholder="Any details to add?"
@@ -51,7 +51,7 @@ function AddTodoForm(props: Props): ReactElement {
           />
         </div>
         <div className="form-row">
-          <label>Priority</label>
+          <label>Priority </label>
           <select onChange={onInputChange} name="priority">
             {Object.entries(priorityLabels).map(([prio, label]) =>
               <option key={prio} value={prio}>{label}</option>
